@@ -16,13 +16,14 @@ async function getCountry() {
 }
 getCountry()
 function showCountry(data){
+    console.log(data)
     const country=document.createElement("div")
     country.classList.add("country")
     country.innerHTML= `<div class="country-img">
-    <img src="${data.flag}" alt="{name}">
+    <img src="${data.flags.svg}" alt="{name}">
 </div>
 <div class="country-info">
-    <h5 class="countryName">${data.name}</h5>
+    <h5 class="countryName">${data.name.common}</h5>
     <p><strong>population:</strong>${data.population}</p>
     <p class="regionName"><strong>region:</strong>${data.region}</p>
     <p><strong>capital:</strong>${data.capital}</p>
@@ -31,7 +32,7 @@ countriesElem.appendChild(country)
 country.addEventListener("click", ()=>{
     showcountryDetail(data)
 })
-}                                                              // `
+}                                                              // `´
 
 desplegar.addEventListener("click",()=>{
     dropElem.classList.toggle("showDropDown")
@@ -72,14 +73,15 @@ cambiar.addEventListener("click",()=>{
 
 const countrymodal=document.querySelector(".countrymodal");
 function showcountryDetail(data){
+    console.log(data)
     countrymodal.classList.toggle("show")
     countrymodal.innerHTML=`<button class="Back">back</button>
     <div class="modal"></div>
     <div class="leftModal">
-        <img src=${data.flags} alt="{name}">
+        <img src=${data.flags.svg} alt="{name}">
     </div>
     <div class="rightModal">
-        <h1>"${data.name}"</h1>
+        <h1>"${data.name.common}"</h1>
         <div class="modalinfo">
         <div class="innerleft inner">
             <p><strong>Native name:</strong>${data.Nativename}</p>
@@ -90,13 +92,11 @@ function showcountryDetail(data){
         <div class="innerright inner">
             <p><strong>capital:</strong>${data.capital}</p>
             <p><strong>Top level domain:</strong>${data.Topleveldomain}</p>
-            <p><strong>currencies:</strong>${data.currencies.map(elem=>elem.name)}</p>
-            <p><strong>languages:</strong>${data.languages.map(elem=>elem.name)}</p>
         </div>
         </div>
     </div>`
-}
 const Back=countrymodal.querySelector(".Back")
-Back.addEventListener("click",() =>{
-countrymodal.classList.cambiar("show")
+Back?.addEventListener("click",()=>{
+    countrymodal.classList.toggle("show")
 })
+}
